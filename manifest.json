@@ -1,7 +1,7 @@
 {
   "name": "LPG Converter",
   "short_name": "LPG",
-  "description": "Convertitore tonnellate/barili per propano, butano e media ponderata",
+  "description": "Convertitore per tonnellate/barili di propano e butano",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",

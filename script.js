@@ -1,41 +1,32 @@
-
 function showTab(id) {
-  document.querySelectorAll('.tab').forEach(tab => tab.style.display = 'none');
-  document.getElementById(id).style.display = 'block';
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-function convertPropane() {
-  const tons = parseFloat(document.getElementById('tons-propane').value);
-  if (!isNaN(tons)) {
-    const barrels = tons * 521.6;
-    document.getElementById('result-propane').innerText = `${barrels.toFixed(2)} barili`;
-  }
+function convertPropano() {
+  const ton = parseFloat(document.getElementById('tonPropano').value) || 0;
+  const barili = ton * 11.76;
+  document.getElementById('bariliPropano').textContent = barili.toFixed(2);
 }
 
-function convertButane() {
-  const tons = parseFloat(document.getElementById('tons-butane').value);
-  if (!isNaN(tons)) {
-    const barrels = tons * 456.9;
-    document.getElementById('result-butane').innerText = `${barrels.toFixed(2)} barili`;
-  }
+function convertButano() {
+  const ton = parseFloat(document.getElementById('tonButano').value) || 0;
+  const barili = ton * 11.63;
+  document.getElementById('bariliButano').textContent = barili.toFixed(2);
 }
 
-function calculateWeightedAverage() {
-  const qtP = parseFloat(document.getElementById('qt-propane').value);
-  const qtB = parseFloat(document.getElementById('qt-butane').value);
-  if (!isNaN(qtP) && !isNaN(qtB)) {
-    const total = qtP + qtB;
-    const avg = (qtP * 44.1 + qtB * 58.1) / total;
-    const percentP = (qtP / total) * 100;
-    const percentB = (qtB / total) * 100;
-    document.getElementById('result-average').innerText = `Media Ponderata: ${avg.toFixed(2)} g/mol
-    (Propano: ${percentP.toFixed(1)}%, Butano: ${percentB.toFixed(1)}%)`;
-  }
-}
+function calcolaMedia() {
+  const pPropano = parseFloat(document.getElementById('percPropano').value) || 0;
+  const pButano = parseFloat(document.getElementById('percButano').value) || 0;
+  const total = pPropano + pButano;
+  if (total === 0) return;
 
-// Register service worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js');
-  });
+  const propanoPM = 44.1;
+  const butanoPM = 58.1;
+  const mediaPM = ((pPropano * propanoPM) + (pButano * butanoPM)) / total;
+  document.getElementById('pmMedio').textContent = mediaPM.toFixed(2);
+
+  const ton = parseFloat(document.getElementById('tonMedia').value) || 0;
+  const barili = (ton * 1000) / mediaPM * 0.159;
+  document.getElementById('bariliMedia').textContent = barili.toFixed(2);
 }
