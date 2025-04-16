@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff"/>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <title>LPG Converter</title>
+</head>
+<body>
+  <h1>LPG Converter</h1>
+  <div class="tabs">
+    <button onclick="showTab('propane')">Propano</button>
+    <button onclick="showTab('butane')">Butano</button>
+    <button onclick="showTab('average')">Media Ponderata</button>
+  </div>
+
+  <div id="propane" class="tab">
+    <h2>Propano</h2>
+    <label>Inserisci tonnellate:</label>
+    <input id="tons-propane" type="number" step="any" />
+    <button onclick="convertPropane()">Converti</button>
+    <p id="result-propane"></p>
+  </div>
+
+  <div id="butane" class="tab" style="display:none">
+    <h2>Butano</h2>
+    <label>Inserisci tonnellate:</label>
+    <input id="tons-butane" type="number" step="any" />
+    <button onclick="convertButane()">Converti</button>
+    <p id="result-butane"></p>
+  </div>
+
+  <div id="average" class="tab" style="display:none">
+    <h2>Media Ponderata</h2>
+    <label>Quantità Propano (ton):</label>
+    <input id="qt-propane" type="number" step="any" /><br/>
+    <label>Quantità Butano (ton):</label>
+    <input id="qt-butane" type="number" step="any" /><br/>
+    <button onclick="calculateWeightedAverage()">Calcola</button>
+    <p id="result-average"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
